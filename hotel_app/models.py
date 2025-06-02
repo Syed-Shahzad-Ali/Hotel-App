@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.core.validators import MinValueValidator
 from utils.validators import *
 # from ckeditor.fields import RichTextField
+import bleach
 
 class Employee(models.Model):
     alphabetic_validator = RegexValidator(
@@ -32,7 +33,7 @@ class Employee(models.Model):
     department = models.CharField(max_length=50, validators=[alphabetic_validator])
     salary = models.DecimalField(max_digits=10, decimal_places=2, validators=[validate_salary])
     is_active = models.BooleanField(default=True)
-    image = models.ImageField(upload_to='employee_images/', blank=True, null=True, validators=[validate_image])
+    image = models.ImageField(upload_to='employee_images/', blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='employee_created_by', null=True, blank=True)
     updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='employee_updated_by', null=True, blank=True)
     
@@ -105,8 +106,8 @@ class Booking(models.Model):
     adults = models.IntegerField(null=True, blank=True)
     children = models.IntegerField(null=True, blank=True)
     guest = models.ForeignKey(Guest, on_delete=models.CASCADE, related_name='guest1', null=True, blank=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE,related_name='booking_created_by', null=True, blank=True)
-    updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booking_updated_by', null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE,related_name='booking_created_by',null=True, blank=True )
+    updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booking_updated_by',null=True, blank=True)
 
     def clean(self):
         if self.check_out <= self.check_in:

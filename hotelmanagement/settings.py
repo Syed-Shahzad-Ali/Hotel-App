@@ -14,6 +14,17 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+AUTH_USER_MODEL = 'user_auth.User'
+
+JWT_ENCODING_ALGO= 'HS256'
+JWT_ENCODING_SECRET_KEY= 'Cyber@123'
+JWT_TOKEN_EXPIRY_DELTA= 300000000
+AUTH_USER_MODEL = 'user_auth.User'
+
+# AUTHENTICATION_BACKENDS = ["utils.base_authentication.AuthenticationBackend"]
+AUTHENTICATION_BACKENDS = ['user_auth.authentication.EmailBackend']
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'hotel_app',
+    'permissions',
+    'user_auth'
 ]
 
 MIDDLEWARE = [

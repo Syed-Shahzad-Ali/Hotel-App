@@ -107,4 +107,4 @@ class ContactFilter(FilterSet):
 
     class Meta:
         model = Contact
-        fields='_all_'
+        fields='__all__'

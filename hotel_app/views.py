@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from hotel_app.hotel_filters import RoomFilter
+from hotel_app.filter import RoomFilter
 from permissions.decorator import permission_required
 from . models import Employee
 from django.shortcuts import render,HttpResponse
